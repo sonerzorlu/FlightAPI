@@ -38,8 +38,7 @@ module.exports = {
             #swagger.parameters['body'] = {
                 in: 'body',
                 required: true,
-                schema: {
-                }
+                schema: { $ref: '#/definitions/Flight' }
             }
         */
 
@@ -75,12 +74,11 @@ module.exports = {
             #swagger.parameters['body'] = {
                 in: 'body',
                 required: true,
-                schema: {
-                }
+                schema: { $ref: '#/definitions/Flight' }
             }
         */
 
-        const data = await Flight.updateOne({ _id: req.params.id }, req.body)
+        const data = await Flight.updateOne({ _id: req.params.id }, req.body, { runValidators: true })
 
         res.status(202).send({
             error: false,

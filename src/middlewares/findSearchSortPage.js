@@ -11,7 +11,8 @@ module.exports = (req, res, next) => {
     const search = req.query?.search || {}
     for (let key in search) search[key] = { $regex: search[key], $options: 'i' }
 
-    // SORTING: URL?sort[key1]=1&sort[key2]=-1 (1:ASC, -1:DESC)
+    // Cancelled -> SORTING: URL?sort[key1]=1&sort[key2]=-1 (1:ASC, -1:DESC)
+    // mongoose=^8.0 -> SORTING: URL?sort[key1]=asc&sort[key2]=desc (asc: A->Z - desc: Z->A)
     const sort = req.query?.sort || {}
 
     // PAGINATION: URL?page=1&limit=10
